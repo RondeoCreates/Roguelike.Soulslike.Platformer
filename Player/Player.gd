@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var SPEED = 300.0
+@export var SPEED = 150.0
 @export var ROLL_SPEED = 200.0
 @export var JUMP_VELOCITY = -400.0
 @export var MAX_JUMP = 2
@@ -14,6 +14,7 @@ var collision_shape = null
 var roll_shape = null
 var jump = 0
 var is_rolling = false
+var ledge_grabbing = false
 var roll_time = 0
 var direction = null
 
@@ -42,8 +43,10 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	direction = Input.get_axis("mv_left", "mv_right")
+	if not ledge_grabbing:
+		direction = Input.get_axis("mv_left", "mv_right")
 
+	process_ledge_grabbing(delta)
 	move_and_slide()
 	process_rolling(delta)
 	process_animation()
@@ -57,15 +60,29 @@ func _physics_process(delta):
 func reset_height():
 	collision_shape.disabled = false
 	roll_shape.disabled = true
+	
+func done_ledge_climbing():
+	translate(Vector2(16*(1 if direction > 0 else -1),-64))
+	ledge_grabbing = false
+
+func process_ledge_grabbing(delta):
+	if not ledge_grabbing and $"GrabSensorOn".has_overlapping_bodies() and not $"GrabSensorOff".has_overlapping_bodies() and not is_rolling:
+		ledge_grabbing = true
+	
+	if ledge_grabbing:
+		velocity.y = 0
+		if animated_sprite.frame >= 6:
+			done_ledge_climbing()
 
 func process_rolling(delta):
 	if is_rolling:
+		ledge_grabbing = false
 		direction = -1 if animated_sprite.flip_h else 1
 		roll_time += delta
 		collision_shape.disabled = true
 		roll_shape.disabled = false
 		#if animated_sprite.animation_finished:
-		var sensor_overlaps = $"Area2D".has_overlapping_areas()
+		var sensor_overlaps = $"RollSensor".has_overlapping_bodies()
 		if roll_time > MAX_ROLL_TIME and not sensor_overlaps:
 			is_rolling = false
 			roll_time = 0
@@ -79,8 +96,10 @@ func process_animation():
 	elif velocity.x > 0:
 		animated_sprite.flip_h = false
 	
-	if( is_rolling ):
-		animated_sprite.play("Roll")	
+	if is_rolling:
+		animated_sprite.play("Roll")
+	elif ledge_grabbing:
+		animated_sprite.play("Climb_Up")
 	elif velocity.y != 0:
 		if velocity.y < 0:
 			animated_sprite.play("Jump_Up")

@@ -194,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ewtbb")
 }],
-"loop": false,
+"loop": true,
 "name": &"Climb_Up",
 "speed": 5.0
 }, {
@@ -354,7 +354,7 @@ script = ExtResource("1_gyuep")
 position = Vector2(0, -37)
 scale = Vector2(1.64286, 1.64286)
 sprite_frames = SubResource("SpriteFrames_ijkyo")
-animation = &"Idle"
+animation = &"Climb_Up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_gmp52")

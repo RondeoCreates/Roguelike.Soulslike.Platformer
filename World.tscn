@@ -37,3 +37,18 @@ position = Vector2(-16, 32)
 
 [node name="Block10" parent="." instance=ExtResource("2_kv28f")]
 position = Vector2(-16, 64)
+
+[node name="Block11" parent="." instance=ExtResource("2_kv28f")]
+position = Vector2(144, 128)
+
+[node name="Block12" parent="." instance=ExtResource("2_kv28f")]
+position = Vector2(176, 128)
+
+[node name="Block13" parent="." instance=ExtResource("2_kv28f")]
+position = Vector2(208, 128)
+
+[node name="Block14" parent="." instance=ExtResource("2_kv28f")]
+position = Vector2(240, 128)
+
+[node name="Block15" parent="." instance=ExtResource("2_kv28f")]
+position = Vector2(272, 128)

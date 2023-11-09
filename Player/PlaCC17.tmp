@@ -194,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ewtbb")
 }],
-"loop": false,
+"loop": true,
 "name": &"Climb_Up",
 "speed": 5.0
 }, {
@@ -349,12 +349,17 @@ radius = 7.45
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_gyuep")
+SPEED = null
+ROLL_SPEED = null
+JUMP_VELOCITY = null
+MAX_JUMP = null
+MAX_ROLL_TIME = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -37)
 scale = Vector2(1.64286, 1.64286)
 sprite_frames = SubResource("SpriteFrames_ijkyo")
-animation = &"Idle"
+animation = &"Climb_Up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_gmp52")
