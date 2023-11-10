@@ -25,12 +25,18 @@ var playground = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var block = preload("res://Block.tscn")
+	var player = preload("res://Player/Player.tscn")
+	block.instantiate()
+	player.instantiate()
 	playground.reverse()
 	for y in range(0, playground.size()):
 		var row = playground[y]
 		for x in range(0, row.size()):
 			var tile = row[x]
-			var block = Block.new()
+			match tile:
+				1:
+					
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
