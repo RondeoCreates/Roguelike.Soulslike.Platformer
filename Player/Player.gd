@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export var SPEED = 150.0
-@export var ROLL_SPEED = 200.0
+@export var ROLL_SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var MAX_JUMP = 2
 @export var MAX_ROLL_TIME = .5
@@ -76,6 +76,8 @@ func process_ledge_grabbing(delta):
 
 func process_rolling(delta):
 	if is_rolling:
+		if not is_on_floor():
+			velocity.y = 0
 		ledge_grabbing = false
 		direction = -1 if animated_sprite.flip_h else 1
 		roll_time += delta
@@ -97,7 +99,10 @@ func process_animation():
 		animated_sprite.flip_h = false
 	
 	if is_rolling:
-		animated_sprite.play("Roll")
+		if not is_on_floor():
+			animated_sprite.play("Dash")
+		else:
+			animated_sprite.play("Roll")
 	elif ledge_grabbing:
 		animated_sprite.play("Climb_Up")
 	elif velocity.y != 0:
