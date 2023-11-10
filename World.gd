@@ -27,16 +27,21 @@ var playground = [
 func _ready():
 	var block = preload("res://Block.tscn")
 	var player = preload("res://Player/Player.tscn")
-	block.instantiate()
 	player.instantiate()
-	playground.reverse()
+	#playground.reverse()
 	for y in range(0, playground.size()):
 		var row = playground[y]
 		for x in range(0, row.size()):
 			var tile = row[x]
 			match tile:
 				1:
-					
+					var instance = block.instantiate()
+					instance.translate(Vector2(x*32,y*32))
+					add_child(instance)
+				7:
+					var instance = player.instantiate()
+					instance.translate(Vector2(x*32,y*32))
+					add_child(instance)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
