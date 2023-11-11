@@ -470,18 +470,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../CollisionShape2D/Camera2D:position_smoothing_speed")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [5.0]
-}
 
 [sub_resource type="Animation" id="Animation_p6fbd"]
 resource_name = "fall_animation"
@@ -678,6 +666,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_m6oj5"]
 resource_name = "ledgeclimb_animation"
+length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -697,10 +686,10 @@ tracks/1/path = NodePath("../CollisionShape2D:shape:radius")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [7.45, 7.45, 16.0, 13.0, 9.0, 8.0, 8.0, 8.0, 8.0, 7.45]
+"values": [7.45, 7.45, 16.0, 13.0, 9.0, 8.0, 8.0, 8.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -709,10 +698,10 @@ tracks/2/path = NodePath("../CollisionShape2D:shape:height")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [64.0, 60.0, 32.0, 44.0, 48.0, 52.0, 60.0, 66.0, 66.0, 64.0]
+"values": [64.0, 60.0, 32.0, 44.0, 48.0, 52.0, 60.0, 66.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -721,10 +710,10 @@ tracks/3/path = NodePath("../CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -9), Vector2(13, -49), Vector2(22, -55), Vector2(25, -58), Vector2(29, -62), Vector2(26, -65), Vector2(22, -66), Vector2(22, -66), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, -9), Vector2(13, -49), Vector2(22, -55), Vector2(25, -58), Vector2(29, -62), Vector2(26, -65), Vector2(22, -66)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -733,10 +722,10 @@ tracks/4/path = NodePath("../CollisionShape2D:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0, 0.0, 0.0]
+"values": [0.0]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -748,21 +737,9 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [22.0, -61.0],
+"args": [22.0, -66.0],
 "method": &"done_ledge_climbing"
 }]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../CollisionShape2D/Camera2D:position_smoothing_speed")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.5, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.0, 1.0, 5.0]
 }
 
 [sub_resource type="Animation" id="Animation_ekbna"]
@@ -1046,15 +1023,20 @@ a = Vector2(0, -11)
 b = Vector2(0, -32)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_olvob"]
-a = Vector2(8, -37)
+a = Vector2(2, -37)
 b = Vector2(18, -37)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_g8f5i"]
-a = Vector2(8, -30)
+a = Vector2(2, -30)
 b = Vector2(18, -30)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_gyuep")
+SPEED = null
+ROLL_SPEED = null
+JUMP_VELOCITY = null
+MAX_JUMP = null
+MAX_ROLL_TIME = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false

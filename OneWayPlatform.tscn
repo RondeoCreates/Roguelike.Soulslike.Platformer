@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0ouf7o8xaj4n"]
+[gd_scene load_steps=2 format=3 uid="uid://gk0u7h6e4o1v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvr1p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl3iy"]
 size = Vector2(32, 32)
 
-[node name="Block" type="Node2D"]
+[node name="OneWayPlatform" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -13,8 +13,7 @@ collision_mask = 3
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
-offset_bottom = 16.0
-metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_hvr1p")
+shape = SubResource("RectangleShape2D_cl3iy")
+one_way_collision = true
