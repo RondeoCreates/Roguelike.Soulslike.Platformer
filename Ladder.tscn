@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://domeqg3ouq8qa"]
+
+[ext_resource type="Script" path="res://StaticBody2D.gd" id="1_oh52q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pri5"]
+size = Vector2(32, 32)
+
+[node name="Ladder" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_oh52q")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+color = Color(0.541176, 0.541176, 0.541176, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_7pri5")

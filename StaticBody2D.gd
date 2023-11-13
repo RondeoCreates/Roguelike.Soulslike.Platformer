@@ -12,3 +12,8 @@ func _process(delta):
 
 func disable( disabled ):
 	$"CollisionShape2D".disabled = disabled
+
+
+func getX():
+	print_debug(get_parent().position.x)
+	return get_parent().position.x
