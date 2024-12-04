@@ -42,7 +42,7 @@ func _physics_process(delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	if not ledge_grabbing:
+	if not ledge_grabbing or not is_ladder_climbing:
 		direction = Vector2( Input.get_axis("mv_left", "mv_right"), Input.get_axis("jmp","down")*-1 )
 	
 	process_jump_down(delta)
@@ -58,8 +58,6 @@ func _physics_process(delta):
 	else:
 		if direction.y < 0 and not is_jumping_down and not is_ladder_climbing:
 			is_crouching = true
-			if Input.is_action_just_pressed("mv_left"):
-				print_debug("Crouching - is on floor", is_on_floor())
 			return
 		else:
 			is_crouching = false
@@ -90,6 +88,8 @@ func _physics_process(delta):
 	if direction:
 		if not is_ladder_climbing:
 			velocity.x = direction.x * new_speed
+		else:
+			velocity.x = 0
 		flip = direction.x
 	else:
 		velocity.x = move_toward(velocity.x, 0, new_speed)
@@ -105,7 +105,7 @@ func process_ladder_climbing(_delta):
 		overlapping_body = $"Sensors/LadderSensor".get_overlapping_bodies()[0]
 		position.x = overlapping_body.getX()
 		if direction.y < 0:
-			translate(Vector2(0, 128))
+			translate(Vector2(0, 110))
 		is_ladder_climbing = true
 	
 	if is_ladder_climbing:
